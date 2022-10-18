@@ -19,7 +19,7 @@ class NewsController extends Controller
     public function oneNews(int $id, News $news): ?View
     {
 
-        return view('oneNews')->with('oneNews', $news->getOneNewsByID($id));
+        return view('news.oneNews')->with('oneNews', $news->getOneNewsByID($id));
 
     }
 }
