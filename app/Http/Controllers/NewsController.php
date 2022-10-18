@@ -2,34 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AllNews;
 use App\Models\Categories;
 use App\Models\News;
-use App\Models\OneNews;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class NewsController extends Controller
 {
 
-    public function index(): View
+    public function index(News $news): View
     {
-        $allNews = (new AllNews())->allNews;
-
-        return view('news')->with('allNews', $allNews);
+        return view('news.news')->with('allNews', $news->getAllNews());
     }
 
-    public function categories(string $categoriesName): View
+
+    public function oneNews(int $id, News $news): ?View
     {
-        return view('news')->with('allNews', (new Categories())->showCategories((new AllNews())->allNews, $categoriesName));
 
-    }
-
-    public function oneNews(int $id): ?View
-    {
-        $oneNews = (new OneNews())->oneNewsByID($id, (new AllNews())->allNews);
-
-        return view('oneNews')->with('oneNews', $oneNews);
+        return view('oneNews')->with('oneNews', $news->getOneNewsByID($id));
 
     }
 }
