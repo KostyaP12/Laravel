@@ -10,6 +10,6 @@
 <body>
 <?php include_once "menu.php"; ?><br>
 
-Добро пожаловать
+Добро пожаловать!
 </body>
 </html>

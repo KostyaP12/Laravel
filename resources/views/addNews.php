@@ -5,18 +5,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News</title>
+    <title>Document</title>
 </head>
 <body>
-<?php include_once "menu.php"; ?>
-<br>
-<?php include_once "categories.php"; ?>
-<br>
-<h2>Новости</h2>
-<?php foreach ($allNews as $news): ?>
-<a href="<?=route('oneNews', $news->id)?>"><?=$news->title?></a>
-<div><?=$news->text?></div>
-<br>
-<?php endforeach;?>
+<input type="text" id="title" name="title">
+<label for="username">title</label>
+<input type="text" id="text" name="text">
+<label for="username">text</label>
+<input type="text" id="short_text" name="short_text">
+<label for="username">Short text</label>
 </body>
 </html>
+
