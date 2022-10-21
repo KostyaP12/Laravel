@@ -6,7 +6,7 @@ namespace App\Models;
 
 class Categories
 {
-    private array $categories_id = [
+    private array $categories = [
         1 => [
             'id' => 1,
             'title' => "Спорт",
@@ -33,7 +33,7 @@ class Categories
     {
         $categoriesNews = [];
         $id = 0;
-        foreach ($this->categories_id as $category_id) {
+        foreach ($this->categories as $category_id) {
             if ($categoriesName == $category_id['slug']) {
                 $id = $category_id['id'];
             }
@@ -48,11 +48,12 @@ class Categories
     }
 
     /**
-     * @return array|array[]
+     * @return array
      */
-    public function getCategoriesId(): array
+    public function getCategories(): array
     {
-        return $this->categories_id;
+        return $this->categories;
     }
+
 
 }

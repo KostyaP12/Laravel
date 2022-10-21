@@ -1,5 +1,4 @@
-
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'Новости')
 
@@ -8,18 +7,22 @@
 @endsection
 
 @section('content')
-    @if ($oneNews)
-        @if (!$oneNews['isPrivate'])
-    <div>
-        <h2>{{$oneNews['title']}}</h2>
-        <p>{{$oneNews['text']}}</p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        @if (!$oneNews['isPrivate'])
+                            <h2>{{$oneNews['title']}}</h2>
+                            <p>{{$oneNews['text']}}</p>
+                        @else
+                            Новость приватная. Зарегистрируйтесь для просмотра ..
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-        @else
-            Зарегистрируйтесь для просмотра
-        @endif
-    @else
-        Нет новости с таким id
-    @endif
 @endsection
 
 
