@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function index():View
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        return view('home');
+        //$this->middleware('auth');
     }
 
-    public function categoriesMenu(Categories $categories):View
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
     {
-        return view('categories')->with('categories', ($categories->getCategoriesId()));
+        return view('home');
     }
 }

@@ -11,7 +11,7 @@ class CategoriesController extends Controller
 {
     public function categories(string $categoriesName, News $news, Categories $categories): View
     {
-        return view('news')->with('allNews', ($categories->showCategories($news->getAllNews(), $categoriesName)));
+        return view('news.news')->with('allNews', ($categories->showCategories($news->getAllNews(), $categoriesName)));
 
     }
 }
