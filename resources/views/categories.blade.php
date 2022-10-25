@@ -8,6 +8,6 @@
 
 @foreach ((new App\Models\Categories())->getCategories() as $category )
     <li class="nav-item">
-<a class="nav-link" href="{{route('categories', $category['slug'])}}">{{$category['title']}}</a>
+<a class="nav-link" href="{{route('categories', $category->slug)}}">{{$category->title}}</a>
     </li>
 @endforeach

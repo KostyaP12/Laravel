@@ -4,9 +4,13 @@
 namespace App\Models;
 
 
+
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+
 class Categories
 {
-    private array $categories = [
+    /*private array $categories = [
         1 => [
             'id' => 1,
             'title' => "Спорт",
@@ -26,12 +30,12 @@ class Categories
         5 => [
             'id' => 5,
             'title' => "Наука",
-            'slug' => 'science']];
+            'slug' => 'science']];*/
 
 
-    public function showCategories(array $allNews, string $categoriesName): array
+    public function showCategories(string $categoriesName): ?array
     {
-        $categoriesNews = [];
+        /*$categoriesNews = [];
         $id = 0;
         foreach ($this->categories as $category_id) {
             if ($categoriesName == $category_id['slug']) {
@@ -42,17 +46,17 @@ class Categories
             if ($oneNews['category_id'] == $id) {
                 $categoriesNews[] = $oneNews;
             }
-        }
+        }*/
 
-        return $categoriesNews;
+        return DB::select(
+            'SELECT * FROM News INNER JOIN categories ON news.category_id=categories.id WHERE categories.slug=:categoriesName',
+            ['categoriesName' => $categoriesName]);
     }
 
-    /**
-     * @return array
-     */
-    public function getCategories(): array
+    public function getCategories(): ?Collection
     {
-        return $this->categories;
+        //return $this->categories;
+        return DB::table("categories")->get();
     }
 
 
