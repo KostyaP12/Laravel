@@ -23,7 +23,7 @@ Route::prefix('news')
     ->group(function () {
         Route::get('/', [NewsController::class, 'index'])->name('allNews');
         Route::get('/{id}', [NewsController::class, 'oneNews'])->name('oneNews')->whereNumber('id');
-        Route::get('categories/{categories}', [CategoriesController::class, 'categories'] )->name('categories');
+        Route::get('categories/{categories}', [CategoriesController::class, 'categories'])->name('categories');
     });
 
 Route::name('admin.')
@@ -31,7 +31,7 @@ Route::name('admin.')
     ->namespace('Admin')
     ->group(function () {
         Route::get('/', [AdminIndexController::class, 'index'])->name('index');
-        Route::view('/add', 'admin.addNews')->name('addNews');
+        Route::match(['get', 'post'], '/create', [AdminIndexController::class, 'create'])->name('create');
     });
 Route::view('/authorization', 'authorization')->name('authorization');
 
@@ -39,4 +39,6 @@ Route::view('/authorization', 'authorization')->name('authorization');
 Route::view('/about', 'about')->name('about');
 
 
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
