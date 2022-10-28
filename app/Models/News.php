@@ -4,27 +4,21 @@
 namespace App\Models;
 
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use stdClass;
 
 
 class News
 {
 
-    public function __construct(Categories $categories)
+    public function getAllNews(): ?Collection
     {
-        $this->categories = $categories;
+        return DB::table('news')->get();
     }
 
-    public function getAllNews():?array
+    public function getOneNewsByID(int $id): ?stdClass
     {
-        return json_decode(Storage::disk('local')->get('news.json'), true);
-    }
-
-    public function getOneNewsByID(int $id): ?array
-    {
-        if (array_key_exists($id, $this->getAllNews())) {
-            return $this->getAllNews()[$id];
-        }
-        return null;
+        return DB::table('news')->find($id);
     }
 }
