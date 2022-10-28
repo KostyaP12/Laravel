@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
-
 use Illuminate\View\View;
 
 class CategoriesController extends Controller
 {
-    public function categories(string $categoriesName, Categories $categories): View
+    public function category(string $categoriesName): View
     {
-        return view('news.news')->with('allNews', ($categories->showCategories($categoriesName)));
-
+        return view('news.index',
+            [
+                'allNews' => Categories::query()->where('slug', $categoriesName)->first()->news,
+                'categories' => Categories::query()->get()
+            ]);
     }
 }

@@ -21,15 +21,20 @@ class IndexController extends Controller
         if ($request->isMethod('post')) {
 
             $allNews = $news->getAllNews();
-            $id = array_key_last($allNews) + 1;
 
-            $allNews[$id] = [
-                'id'=> $id,
+
+            $allNews[] = [
                 'title' => $request->title,
                 'text' => $request->text,
                 "isPrivate" => isset($request->isPrivate),
                 "category_id" => $request->category
             ];
+
+            $id = array_key_last($allNews);
+            $allNews[$id] =
+                [
+                   'id' => $id
+                ];
 
             Storage::disk('local')->put('news.json', json_encode($allNews, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
