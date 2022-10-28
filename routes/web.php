@@ -17,13 +17,13 @@ use App\Http\Controllers\CategoriesController;
 |
 */
 
-Route::get('/', [HomeController::class, "index", "categoriesMenu"],)->name('home');
+Route::get('/', [HomeController::class, "index"],)->name('home');
 
 Route::prefix('news')
     ->group(function () {
         Route::get('/', [NewsController::class, 'index'])->name('allNews');
-        Route::get('/{id}', [NewsController::class, 'oneNews'])->name('oneNews')->whereNumber('id');
-        Route::get('categories/{categories}', [CategoriesController::class, 'categories'])->name('categories');
+        Route::get('/{news}', [NewsController::class, 'oneNews'])->name('oneNews')->whereNumber('id');
+        Route::get('categories/{category}', [CategoriesController::class, 'category'])->name('category');
     });
 
 Route::name('admin.')
@@ -39,6 +39,6 @@ Route::view('/authorization', 'authorization')->name('authorization');
 Route::view('/about', 'about')->name('about');
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

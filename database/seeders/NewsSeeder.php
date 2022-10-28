@@ -31,7 +31,7 @@ class NewsSeeder extends Seeder
                 'title' => $faker->realText(rand(10, 30)),
                 'text' => $faker->realText(rand(1000, 3000)),
                 'isPrivate' => $faker->boolean,
-                'category_id' => $faker->numberBetween(1, 5)
+                'categories_id' => $faker->numberBetween(1, 5)
             ];
         }
 

@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('title')->comment("Заголовок новости");
             $table->text('text')->comment("Тело новости");
             $table->boolean('isPrivate');
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('categories_id');
             $table->timestamps();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('categories_id')->references('id')->on('categories');
         });
     }
 

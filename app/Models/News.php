@@ -4,21 +4,10 @@
 namespace App\Models;
 
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
-use stdClass;
+use Illuminate\Database\Eloquent\Model;
 
 
-class News
+class News extends Model
 {
 
-    public function getAllNews(): ?Collection
-    {
-        return DB::table('news')->get();
-    }
-
-    public function getOneNewsByID(int $id): ?stdClass
-    {
-        return DB::table('news')->find($id);
-    }
 }
